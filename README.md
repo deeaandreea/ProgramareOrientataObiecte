@@ -1,6 +1,3 @@
-# ProgramareOrientataObiecte
-Curs Programare Orientata Obiecte - FMI UniBuc
-
 Tema 1 - Implementare clasa "Polinom"
 
 Cerinte:
