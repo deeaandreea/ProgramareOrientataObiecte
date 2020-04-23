@@ -25,7 +25,7 @@ class Polinom
 {
 // Definire membri privati pentru vectorul propriuzis si numarul de elemente
    int grad;			// gradul polinomului
-   double coef[100];	// vectorul coeficientilor (de tip double), alocat static
+   double * coef;	// vectorul coeficientilor (de tip double), alocat dinamic
    // coef[0] - termenul liber (x^0)
    // coef[1] - x^1
    // ...
@@ -35,6 +35,8 @@ class Polinom
 public:
    // Constructor fara parametri
    Polinom();
+   // Constructor de initializare
+   Polinom(int g);
    // Constructor de initializare
    Polinom(int g, double* c);
    // Constructor de copiere
@@ -60,16 +62,27 @@ public:
 // Constructor de initializare
 Polinom::Polinom()
 {
-    for (int i = 0; i < 100; i++)
+    grad = 0;
+    coef = new double(1); // doar termen liber
+    coef[0] = 0;
+}
+
+
+// Constructor de initializare - se populeaza toti coeficientii cu 0
+Polinom::Polinom(int g)
+{
+    coef = new double(g + 1); // alocam pentru coeficienti g+1 elemente, incluzand si termenul liber
+    for (int i = 0; i <= g; i++)
     {
         coef[i] = 0;
     }
-    grad = 0;
+    grad = g;
 }
 
 // Constructor de initializare
 Polinom::Polinom(int g, double* c)
 {
+    coef = new double(g + 1); // alocam pentru coeficienti g+1 elemente, incluzand si termenul liber 
     for (int i = 0; i <= g; i++)
     {
         coef[i] = c[i];
@@ -80,6 +93,7 @@ Polinom::Polinom(int g, double* c)
 // Constructor de copiere
 Polinom::Polinom(const Polinom& p)
 {
+    coef = new double(p.grad + 1); // alocam pentru coeficienti g+1 elemente, incluzand si termenul liber 
     for (int i = 0; i <= p.grad; i++)
     {
         coef[i] = p.coef[i];
@@ -105,51 +119,39 @@ double Polinom::calcul_valoare(int x)
 // Suma a doua polinoame, implementata prin supraincarcarea operatorului +
 Polinom Polinom::operator+(const Polinom& p)
 {
-    Polinom sum;
+    int grad_rez = max(grad, p.grad);
+    Polinom sum(grad_rez);
     for (int i = 0; i <= grad; i++)
         sum.coef[i] = coef[i];
     for (int i = 0; i <= p.grad; i++ )
         sum.coef[i] += p.coef[i];
-    sum.grad = sum.get_grad();
+    //sum.grad = sum.get_grad(); // nu mai e necesara: gradul e asignat din constructor
     return sum;
 }
 
 // Diferenta a doua polinoame, implementata prin supraincarcarea operatorului -
 Polinom Polinom::operator-(const Polinom& p)
 {
-    Polinom dif;
+    int grad_rez = max(grad, p.grad);
+    Polinom dif(grad_rez);
     for (int i = 0; i <= grad; i++)
         dif.coef[i] = coef[i];
     for (int i = 0; i <= p.grad; i++ )
         dif.coef[i] -= p.coef[i];
-    dif.grad = dif.get_grad();
     return dif;
 }
 
 // Produsul a doua polinoame, implementat prin supraincarcarea operatorului *
 Polinom Polinom::operator*(const Polinom& p)
 {
-    Polinom prod;
+    int grad_rez = grad * p.grad;    
+    Polinom prod(grad_rez);
     for (int i = 0; i <= grad; i++)
         for (int j = 0; j <= p.grad; j++)
-            prod.coef[i+j] += (coef[i] * p.coef[j]);
-    prod.grad = prod.get_grad();
+            prod.coef[i+j] += (coef[i] * p.coef[j]);            
     return prod;
 }
 
-int Polinom::get_grad()
-{
-    int g = 0;
-    for (int i = 0; i < 100; i++)
-        if (coef[i] != 0)
-		    g = i;
-    return g;
-}
-
-void Polinom::set_grad(int g)
-{
-    grad = g;
-}
 
 void Polinom::afisare(const char* nume)
 {
@@ -191,6 +193,7 @@ int main()
     cout << "sum(2) = " << sum.calcul_valoare(2) << endl; // inlocuieste x cu 2
     cout << "dif(2) = " << dif.calcul_valoare(2) << endl; // inlocuieste x cu 2
     cout << "prod(2) = " << prod.calcul_valoare(2); // inlocuieste x cu 2
+    cout << endl; 
     
     return 0;
 }
