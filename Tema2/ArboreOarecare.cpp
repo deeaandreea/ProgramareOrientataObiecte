@@ -51,8 +51,6 @@ void ArboreOarecare::traverseaza(Nod* nod, ModTraversare mod) {
                 viziteaza(nod);
                 break;
         }
-    } else {
-        cout << "nod null";
     }
 }
 
