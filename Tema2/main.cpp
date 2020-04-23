@@ -1,7 +1,7 @@
 /*
  * File:   main.cpp
  * Author: Andreea Surdu Bob
- *
+ * Programare orientata obiecte, 2019-2020, an I, sem II - Tema 2
  */
 #include <cstdlib>
 #include <iostream>
@@ -11,23 +11,20 @@
 using namespace std;
 
 int main() {
-    cout << "Arbore oarecare - Andreea Surdu Bob";
+    cout << "Arbore oarecare - Andreea Surdu Bob" << endl;
 
     ifstream fin("input.txt");
 
     int valoare;
-    fin >> valoare;
-    cout << valoare << endl;
-
     ArboreBinar arbore;
 
     while (fin >> valoare)
     {
-        cout << valoare << endl;
         arbore.adauga(valoare);
+        cout << endl;
     }
-    cout << endl;
-    cout << "Arbore oarecare - end";
+    arbore.afiseaza();
+    //cout << arbore;
     return 0;
 }
 

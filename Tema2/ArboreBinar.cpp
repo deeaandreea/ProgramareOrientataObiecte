@@ -3,7 +3,8 @@
  * Author: andreea
  */
 #include "ArboreBinar.h"
-#include <cstddef>
+#include<iostream>
+
 using namespace std;
 
 ArboreBinar::ArboreBinar() {

@@ -5,8 +5,6 @@
 #include <iostream>
 #include "Nod.h"
 
-using namespace std;
-
 Nod::Nod() {
 }
 
@@ -23,13 +21,23 @@ Nod::Nod(int p_info) {
 Nod::~Nod() {
 }
 
-// listeaza continutul uni nod: informatie si copii (NULL daca nu sunt copii)
-void Nod::print(int limita_copii) {
-    std::cout << " [" << info << "](";
-    for (int i=0; i<limita_copii; i++)
-        if (leg[i] != NULL)
-            cout << " " << leg[i] -> info;
-        else
-            cout << " N";
-    cout << ")";
+void Nod::print() const {
+    cout << info << " ";
 }
+/*
+// listeaza continutul uni nod: informatie si copii (NULL daca nu sunt copii)
+void Nod::print(ostream& out) const {
+    out << " [" << info << "] (";
+    for (int i=0; i<nr_copii; i++)
+        if (leg[i] != NULL)
+            out << " " << leg[i] -> info;
+        else
+            out << " N";
+    out << ") ";
+}
+
+ostream& operator<<(ostream& os, const Nod& nod) {
+    print(os);
+    return os;
+}
+*/
