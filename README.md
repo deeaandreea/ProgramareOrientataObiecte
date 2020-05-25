@@ -53,3 +53,24 @@ Se dau urmatoarele clase:
 - Arbore binar: Arbore oarecare
 
 Afisarea elementelor unui arbore binar oarecare sa fie data de parcurgerea în adancime si parcurgerea in latime, cu mentiunea listei fiilor pentru fiecare nod, iar afisarea unui Arbore_binar sa conțină cele 3 parcurgeri simultan.
+
+# Tema 3 - Problema 8 - Implementarea unei aplicatii care sa permita gestionarea conturilor deschise la banca X
+
+## Cerinte comune tuturor temelor
+
+1. utilizarea sabloanelor
+2. utilizarea STL
+3. utilizarea variabilelor, funcțiilor statice, constantelor și a unei functii const
+4. utilizarea conceptelor de RTTI raportat la template-uri
+5. tratarea excepțiilor
+6. citirea informațiilor complete a n obiecte, memorarea și afișarea acestora
+
+## Cerinte specifice
+
+Se dorește implementarea unei aplicații care sa permita gestionarea conturilor
+deschise la banca X. Fiecare cont bancar are obligatoriu un detinator, o data a deschiderii lui și un sold. În cazul conturilor de economii, trebuie retinuta si rata dobânzii (care poate fi pe 3 luni, pe 6 luni sau la un an), precum și un istoric al reactualizarii soldurilor de la deschidere și
+până în prezent. În cazul în care deținătorul optează pentru un cont curent, el beneficiază de un număr de tranzacții gratuite și altele contra cost (de exemplu orice depunere este
+gratuită, dar retragerea poate sa coste dacă s-a depășit numărul de tranzacții gratuite, sau e
+făcută de la bancomatele altor bănci; sau orice cumparatura online are un cost, etc.).
+
+Simulati cat mai corect activitatea băncii X.

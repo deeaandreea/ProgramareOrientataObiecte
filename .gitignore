@@ -3,3 +3,5 @@ obj/
 **/*.exe
 **/*.layout
 **/*.o
+**/bin/
+**/obj/
